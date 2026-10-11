@@ -2,15 +2,15 @@
 <header><a href="./" class="brand"><span>歌</span>中国語の歌詞で発音練習</a><small>普通話 · 試用版</small></header>
 <main><section class="intro"><p class="eyebrow">MANDARIN · LISTEN & PRACTISE</p><h1>歌いたい言葉を、<br>一つずつ。</h1></section>
 <section class="input-panel"><form id="lyrics-form"><label for="lyrics">歌詞を貼り付けてください</label><textarea id="lyrics" maxlength="5000" rows="7" placeholder="普通話の歌詞を、改行を残して貼り付けてください。" aria-describedby="input-help"></textarea><p id="input-help" class="hint">入力は保存しません。簡体字・繁体字に対応。最大5,000文字。</p><div class="input-actions"><button class="primary" type="submit">普通話の発音を調べる →</button><button type="button" id="sample">練習例を試す</button><button type="button" id="clear">消去</button></div><p id="input-error" role="alert"></p></form></section>
-<div class="voice-settings"><label for="voice">普通話の音声</label><select id="voice" aria-describedby="voice-help"></select><label for="rate">速さ</label><select id="rate"><option value="0.7">ゆっくり</option><option value="0.85" selected>少しゆっくり</option><option value="1">標準</option></select><button id="stop-audio" type="button" disabled>音声を停止</button></div><p id="voice-help" class="hint"></p><p id="audio-status" role="status">単語全体の音声で練習できます。</p>
-<section id="results" hidden><h2>一行ずつ、練習しよう</h2><p class="hint">読みは辞書の候補です。複数ある場合は選び直せます。漢字を押すと区切りを編集できます。</p><p class="hint">音声は端末の自動読みです。選択したピンインを音声へ指定していないため、多音字は一致しない場合があります。表記は基本の声調で、音声には変調が含まれる場合があります。</p><p id="selection-status" role="status"></p><div id="lines"></div></section><section id="empty"><p>歌詞の改行を保って、<br>単語ごとの読み・意味・音声を確認します。</p></section></main>
-<footer><p>学習補助用の試作です。区切り・読み・意味は文脈によって異なる場合があります。歌詞・楽曲・歌手の音声は同梱していません。</p><p>辞書：CC-CEDICT / MDBG（CC BY-SA 4.0）。日本語訳は一部のみ。音声は端末内の音声合成を使用します。<a href="SOURCES.md">出典と利用条件</a></p></footer><script>
+<div class="voice-settings"><label for="voice">普通話の音声</label><select id="voice" aria-describedby="voice-help"></select><label for="rate">速さ</label><select id="rate"><option value="0.7">ゆっくり</option><option value="0.85" selected>少しゆっくり</option><option value="1">標準</option></select><button id="stop-audio" type="button" disabled>音声を停止</button></div><p id="voice-help" class="hint"></p><p id="audio-status" role="status">単語ごとの音声で練習できます。</p>
+<section id="results" hidden><h2>一行ずつ、練習しよう</h2><p class="hint">読みは辞書の候補です。複数ある場合は選び直せます。漢字を押すと区切りを編集できます。</p><p class="hint">読みが複数ある語は、選択した読みの同梱音声を一音節ずつ再生します。読みが一つの語は端末の自動読みです。表記は基本の声調で、音声には変調が含まれる場合があります。</p><p id="selection-status" role="status"></p><div id="lines"></div></section><section id="empty"><p>歌詞の改行を保って、<br>単語ごとの読み・意味・音声を確認します。</p></section></main>
+<footer><p>学習補助用の試作です。区切り・読み・意味は文脈によって異なる場合があります。歌詞・楽曲・歌手の音声は同梱していません。</p><p>辞書：CC-CEDICT / MDBG（CC BY-SA 4.0）。日本語訳は一部のみ。音声は端末内の音声合成と同梱の一音節音声を使用します。<a href="SOURCES.md">出典と利用条件</a></p></footer><script>
 (function(){
  var error=document.getElementById('input-error');
  var buttons=document.querySelectorAll('#lyrics-form button');
  function enabled(value){for(var i=0;i<buttons.length;i++)buttons[i].disabled=!value;}
  enabled(false);error.textContent='辞書を読み込んでいます。初回は時間がかかる場合があります。';
  window.setTimeout(function(){if(!window.mandarinReady)error.textContent='辞書を読み込み中です。通信環境を確認し、少しお待ちください。';},15000);
- import('./data.js').then(function(data){return data.loadData();}).then(function(){return import('./app.js?v=20261011-mobile2');}).then(function(){window.mandarinReady=true;enabled(true);error.textContent='';}).catch(function(e){window.mandarinReady=true;error.textContent='アプリを起動できませんでした。SafariやChromeで開き直し、再読み込みしてください。詳細：'+e.message;});
+ import('./data.js').then(function(data){return data.loadData();}).then(function(){return import('./app.js?v=20261011-hybrid1');}).then(function(){window.mandarinReady=true;enabled(true);error.textContent='';}).catch(function(e){window.mandarinReady=true;error.textContent='アプリを起動できませんでした。SafariやChromeで開き直し、再読み込みしてください。詳細：'+e.message;});
 })();
 </script></body></html>

@@ -12,3 +12,6 @@ https://creativecommons.org/licenses/by-sa/4.0/
 https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance
 ## 入力・コード
 歌詞や既存楽曲を同梱せず、練習例は独自の短文。入力はブラウザ内で処理し、保存・localStorage・DB・外部AI送信をしない。辞書へのリンクを押すとその単語の辞書ページへ移動する。アプリコードはMIT（LICENSE-CODE.txt）、辞書と訳にはMITを適用しない。
+
+## 読み候補に対応する音声
+読みが複数ある語には、選択した数字付きピンインに対応する同梱音声を一音節ずつ順番に再生。変調や自然な単語発話は再現しない。未収録は代用しない。音声素材：https://github.com/davinfifield/mp3-chinese-pinyin-sound 、Unlicense（AUDIO-LICENSE.txt）。名前のピンイン＋と同じ未加工MP3をaudio-*.binから取り出す。

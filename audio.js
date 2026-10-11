@@ -1,3 +1,4 @@
+import {audioManifest} from './audio-manifest.js';
 export function mandarinVoices(voices){return voices.filter(v=>v.localService&&/^(zh[-_](CN|TW)|cmn(?:[-_]|$))/i.test(v.lang)).sort((a,b)=>{const rank=v=>(/CN/i.test(v.lang)?0:10)+(/Ting-Ting|Meijia|Xiaoxiao/i.test(v.name||'')?0:1);return rank(a)-rank(b);});}
 export class WordPlayer{
  constructor(onState=()=>{},synth=globalThis.speechSynthesis,makeUtterance=text=>new SpeechSynthesisUtterance(text)){this.synth=synth;this.makeUtterance=makeUtterance;this.onState=onState;this.generation=0;this.utterance=null;}
@@ -10,4 +11,13 @@ export class WordPlayer{
  u.onerror=()=>{if(generation===this.generation){this.utterance=null;this.onState({state:'error',message:'音声を再生できませんでした。'});}};
  this.onState({state:'loading',label:text});try{this.synth.speak(u);}catch{u.onerror();}
  }
+}
+
+export function selectedAudioPlan(token){
+ const reading=token.options[token.selected];
+ if(!reading)return {error:'読みを選択してください。'};
+ const numbered=reading.evidence[0].numbered.toLowerCase().replace(/u:/g,'ü').trim().split(/\s+/);
+ const missing=numbered.filter(key=>!audioManifest[key]);
+ if(missing.length)return {error:'音声未収録：'+missing.join('・')+'。別の読みでは代用しません。'};
+ return {sounds:numbered.map(key=>({key,group:0}))};
 }
