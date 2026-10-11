@@ -1,6 +1,6 @@
 import {analyse,chosen,choose,splitToken,mergeNext,lineReading} from './core.js';
-import {WordPlayer,selectedAudioPlan} from './audio.js';
-import {PinyinPlayer} from './syllable-audio.js';
+import {WordPlayer,selectedAudioPlan} from './audio.js?v=hybrid1';
+import {PinyinPlayer} from './syllable-audio.js?v=hybrid1';
 const $=id=>document.getElementById(id);let lines=[],active=null,voices=[];
 function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
 const wordPlayer=new WordPlayer(s=>{$('stop-audio').disabled=!['loading','playing'].includes(s.state);$('audio-status').textContent=s.state==='loading'?`${s.label}：音声を準備しています。`:s.state==='playing'?`${s.label}：再生中です。`:s.state==='error'?s.message:'単語全体の音声で練習できます。';});
